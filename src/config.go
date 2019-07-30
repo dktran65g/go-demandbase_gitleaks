@@ -22,6 +22,7 @@ type entropyRange struct {
 type Rule struct {
 	description string
 	regex       *regexp.Regexp
+	literal     string
 	severity    string
 	tags        []string
 	entropies   []*entropyRange
@@ -34,6 +35,7 @@ type TomlConfig struct {
 	Rules []struct {
 		Description string
 		Regex       string
+		Literal     string
 		Entropies   []string
 		Tags        []string
 		Severity    string
@@ -125,6 +127,7 @@ func (config *Config) update(tomlConfig TomlConfig) error {
 		r := &Rule{
 			description: rule.Description,
 			regex:       re,
+			literal:     rule.Literal,
 			severity:    rule.Severity,
 			tags:        rule.Tags,
 			entropies:   ranges,

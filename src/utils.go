@@ -115,6 +115,10 @@ func (rule *Rule) check(line string, commit *Commit) (*Leak, error) {
 	}
 
 postEntropy:
+	if rule.literal != "" && strings.Contains(line, rule.literal) {
+		return newLeak(line, fmt.Sprintf("%s literal match", rule.literal), match, rule, commit), nil
+	}
+
 	if rule.regex != nil {
 		match = rule.regex.FindString(line)
 	}
