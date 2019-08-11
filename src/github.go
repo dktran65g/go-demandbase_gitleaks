@@ -173,7 +173,24 @@ func auditGithubRepos() (int, error) {
 	if opts.Disk {
 		ownerDir, _ = ioutil.TempDir(dir, opts.GithubUser)
 	}
+
+	var excludedRepos = make(map[string]bool)
+
+	if opts.SkipRepos != "" {
+		for _, excludedRepo := range strings.Split(opts.SkipRepos, ",") {
+			excludedRepos[strings.TrimSpace(excludedRepo)] = true
+		}
+	}
+
 	for _, githubRepo := range githubRepos {
+
+		_, skipRepo := excludedRepos[*githubRepo.Name]
+
+		if skipRepo {
+			log.Infof("Skipping repo: %s", *githubRepo.Name)
+			continue
+		}
+
 		repo, err := cloneGithubRepo(githubRepo)
 		if err != nil {
 			log.Warn(err)

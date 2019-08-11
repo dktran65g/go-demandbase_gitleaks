@@ -4,8 +4,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/demandbase/gitleaks/src"
 	log "github.com/sirupsen/logrus"
-	"github.com/zricethezav/gitleaks/src"
 )
 
 func main() {

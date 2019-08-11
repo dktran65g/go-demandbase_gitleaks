@@ -43,6 +43,7 @@ type Options struct {
 	ExcludeForks bool   `long:"exclude-forks" description:"exclude forks for organization/user audits"`
 	RepoConfig   bool   `long:"repo-config" description:"Load config from target repo. Config file must be \".gitleaks.toml\""`
 	Branch       string `long:"branch" description:"Branch to audit"`
+	SkipRepos    string `short:"s" long:"skip-repos" description:"Comma separated list of skipped repos"`
 	// TODO: IncludeMessages  string `long:"messages" description:"include commit messages in audit"`
 
 	// Output options
@@ -104,7 +105,7 @@ func (opts *Options) guard() error {
 		return fmt.Errorf("%d available threads", runtime.GOMAXPROCS(0))
 	}
 
-	// do the URL Parse and error checking here, so we can skip it later
+	// do the URL Parse and error checking here, so we can SkipRepos it later
 	// empty string is OK, it will default to the public github URL.
 	if opts.GithubURL != "" && opts.GithubURL != defaultGithubURL {
 		if !strings.HasSuffix(opts.GithubURL, "/") {

@@ -7,6 +7,10 @@ title = "sample gitleaks config"
 # - https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_04B-3_Meli_paper.pdf
 # - https://github.com/dxa4481/truffleHogRegexes/blob/master/truffleHogRegexes/regexes.json
 [[rules]]
+description = "literal-pattern"
+literal = "samplestring"
+
+[[rules]]
 description = "AWS Client ID"
 regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
 tags = ["key", "AWS"]

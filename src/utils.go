@@ -135,7 +135,7 @@ postEntropy:
 
 // inspect will parse each line of the git diff's content against a set of regexes or
 // a set of regexes set by the config (see gitleaks.toml for example). This function
-// will skip lines that include a whitelisted regex. A list of leaks is returned.
+// will SkipRepos lines that include a whitelisted regex. A list of leaks is returned.
 // If verbose mode (-v/--verbose) is set, then checkDiff will log leaks as they are discovered.
 func inspect(commit *Commit) []Leak {
 	var leaks []Leak
