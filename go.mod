@@ -1,4 +1,4 @@
-module github.com/zricethezav/gitleaks
+module github.com/demandbase/gitleaks
 
 require (
 	github.com/BurntSushi/toml v0.3.1
